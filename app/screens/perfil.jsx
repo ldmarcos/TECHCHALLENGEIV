@@ -5,20 +5,17 @@ import {AuthContext} from '../../context/AuthContext'
 import { useContext } from "react"
 const Perfil = () => {
 
-    const {nome, setUser} = useContext(AuthContext)
+    const {setToken} = useContext(AuthContext)
 
     function handleLogout(){
-        setUser({
-            email: '',
-            status: ''
-        })
+        setToken('')
     }
     return(
         <SafeAreaView>
            <Header titulo={'Perfil'}/> 
            <View style={styles.container}>
             <View style={styles.textos}>
-                <Text style={styles.nome}>{nome}</Text>
+                <Text style={styles.nome}>Professor</Text>
                 <Text style={styles.email}>professor@escola.com</Text>
                 <Text style={styles.grupo}>Professor</Text>
             </View>

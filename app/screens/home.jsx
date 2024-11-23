@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
           <FlatList
-            ListHeaderComponent={<HeaderHome titulo={'Bem Vindo, Professor'}/>}
+            ListHeaderComponent={<HeaderHome titulo={'Bem Vindo'}/>}
             keyExtractor={item => item.id}
             data={dadosPost.data}
             renderItem={({item}) => <PostList id={item.id} titulo={item.titulo} conteudo={stripHtmlTags(item.conteudo.slice(0,50)) + '...'} data={formatDate(item.createdAt)} autor={item.autor} capa={item.img} />}

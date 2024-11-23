@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {View,Pressable, Text, TextInput, Platform, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor";
 import axios from 'axios'
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
+import { AuthContext } from "../../context/AuthContext";
 
 const handleHead = ({ tintColor }) => <Text style={{ color: tintColor }}>H1</Text>;
 
@@ -15,7 +16,7 @@ const EditPost = () => {
   const [capa, setCapa] = useState('')
   const [autor, setAutor] = useState('')
   const [conteudo, setConteudo] = useState('')
-
+  const {token} = useContext(AuthContext) 
   useEffect(()=>{
     async function fetchData(){
       const url = `http://192.168.15.7:3000/api/postagens/${route.params.idPost}`
@@ -35,10 +36,8 @@ const EditPost = () => {
 
   },[])
 
-  const handlePublicacao = async () =>{
+  async function editarPost(){
     const url = `http://192.168.15.7:3000/api/postagens/${route.params.idPost}`
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzMxODA0MTg4LCJleHAiOjE3MzE4MDc3ODh9.l1A3TCbOpLMNs8z2U6k7v02OF_PRufXXf050l1HVJos'
-    
     try{
       const postagem = await axios.put(
         url,
@@ -59,12 +58,15 @@ const EditPost = () => {
     }catch(error){
       console.log(error)
     }
-    
-    navigation.goBack()
+  }
+
+  const handlePublicacao = async () =>{
+    editarPost()
+    navigation.navigate("Home")
   }
 
   const handleCancelar = () =>{
-    navigation.goBack()
+    navigation.navigate("Home")
   }
 
   return (

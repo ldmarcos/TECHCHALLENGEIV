@@ -6,7 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import ListagemPost from "../../components/ListagemPost";
 import axios from 'axios'
 import { StyleSheet } from "react-native";
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 import { MenuProvider } from 'react-native-popup-menu';
 
 const Postagens = () => {

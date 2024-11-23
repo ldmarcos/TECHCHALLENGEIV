@@ -11,8 +11,8 @@ import { AuthContext } from '../../context/AuthContext';
 const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
-  const {user} = useContext(AuthContext)
-
+  const {token} = useContext(AuthContext)
+  console.log(token)
   return (
       <Tab.Navigator
         screenOptions={{
@@ -37,7 +37,7 @@ export default function TabLayout() {
             ),
           }}
         />
-      {user.status === 'ATIVO' &&(
+      {token !== '' &&(
         <>
         <Tab.Screen
         name="Postagens"
@@ -65,11 +65,11 @@ export default function TabLayout() {
       />
       </>
       )}
-      {user.status !== 'ATIVO' ? (
+      {token !== '' ? (
         <>
           <Tab.Screen
-          name="Login"
-          component={LoginScreen}
+          name="Perfil"
+          component={PerfilScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
@@ -83,8 +83,8 @@ export default function TabLayout() {
       ) : (
         <>
           <Tab.Screen
-          name="Perfil"
-          component={PerfilScreen}
+          name="Login"
+          component={LoginScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image

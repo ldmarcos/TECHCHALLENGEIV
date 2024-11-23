@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {View,Pressable, Text, TextInput, Platform, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor";
 import axios from 'axios'
-import { useNavigation } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../context/AuthContext";
 
 const handleHead = ({ tintColor }) => <Text style={{ color: tintColor }}>H1</Text>;
 
 const NewPost = () => {
   const navigation = useNavigation()
+  const {token} = useContext(AuthContext)
   const richText = React.useRef();
   const [titulo, setTitulo] = useState('')
   const [capa, setCapa] = useState('')
   const [autor, setAutor] = useState('')
   const [conteudo, setConteudo] = useState('')
 
-  const handlePublicacao = async () =>{
+  async function publicarPost(){
     const url = `http://192.168.15.7:3000/api/postagens`
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzMxNzc1MTMwLCJleHAiOjE3MzE3Nzg3MzB9.myarPRk0MQmHoz_A55lvj1_pn8Va3xRW0w5cOxpQsqw'
-    
     try{
       const postagem = await axios.post(
         url,
@@ -38,11 +38,15 @@ const NewPost = () => {
     }catch(error){
       console.log(error)
     }
-    navigation.goBack()
+  }
+
+  const handlePublicacao = () =>{
+    publicarPost()
+    navigation.navigate('Postagens')
   }
 
   const handleCancelar = () =>{
-    navigation.goBack()
+    navigation.navigate('Postagens')
   }
 
   return (

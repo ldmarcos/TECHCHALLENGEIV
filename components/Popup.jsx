@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Image, Text, StyleSheet } from "react-native";
 import { useNavigation } from "expo-router";
 import axios from 'axios';
 import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
+import { AuthContext } from '../context/AuthContext';
 
 const Popup = ({ idPost }) => {
     const navigation = useNavigation();
-
+    const {token} = useContext(AuthContext)
     async function handleDeletePost() {
         const url = `http://192.168.15.7:3000/api/postagens/${idPost}`;
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzMxNzc1MTMwLCJleHAiOjE3MzE3Nzg3MzB9.myarPRk0MQmHoz_A55lvj1_pn8Va3xRW0w5cOxpQsqw';
         try {
             const response = await axios.delete(url, {
                 headers: {

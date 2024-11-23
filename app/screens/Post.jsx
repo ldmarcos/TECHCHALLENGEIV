@@ -2,7 +2,7 @@ import { useRoute } from "@react-navigation/native";
 import { SafeAreaView, ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import Capa from "../components/Capa";
+import Capa from "../../components/Capa";
 import { useNavigation } from 'expo-router';
 import axios from 'axios';
 import WebView from "react-native-webview";
@@ -38,8 +38,8 @@ const Post = () => {
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.container}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Image style={{ height: 20, width: 30 }} source={require('../assets/icons/backArrow.png')} />
+                    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+                        <Image style={{ height: 20, width: 30 }} source={require('../../assets/icons/backArrow.png')} />
                     </TouchableOpacity>
                     <View style={styles.infoPost}>
                         <Text style={styles.titulo}>{dadosPost.titulo}</Text>
