@@ -12,7 +12,6 @@ const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
   const {token} = useContext(AuthContext)
-  console.log(token)
   return (
       <Tab.Navigator
         screenOptions={{

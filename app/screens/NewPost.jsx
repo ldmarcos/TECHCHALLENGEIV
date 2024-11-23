@@ -3,7 +3,7 @@ import {View,Pressable, Text, TextInput, Platform, KeyboardAvoidingView, SafeAre
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor";
 import axios from 'axios'
 import { useNavigation } from "@react-navigation/native";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const handleHead = ({ tintColor }) => <Text style={{ color: tintColor }}>H1</Text>;
 

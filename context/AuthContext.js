@@ -10,15 +10,12 @@ function AuthProvider({children}){
 
   async function signIn(email, password){
       const url = 'http://192.168.15.7:3000/api/usuarios/login'
-      console.log(password)
-      console.log(email)
       
       const login = await axios.post(url, {
         email: email,
         senha: password
       })
       setToken(login.data.token)
-      console.log(login.data.token)
       navigation.navigate("Home")
   }
 

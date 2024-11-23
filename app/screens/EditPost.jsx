@@ -26,7 +26,6 @@ const EditPost = () => {
         setAutor(resposta.data.autor)
         setCapa(resposta.data.img)
         setConteudo(resposta.data.conteudo)
-        console.log(resposta.data.conteudo)
       }catch(error){
         console.log(error)
       }
@@ -112,7 +111,6 @@ const EditPost = () => {
             initialContentHTML={conteudo}
             onChange={(descriptionText) => {
               setConteudo(descriptionText)
-              console.log(conteudo)
             }}
           />
         </KeyboardAvoidingView>
